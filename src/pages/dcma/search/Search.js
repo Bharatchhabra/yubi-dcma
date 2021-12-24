@@ -11,9 +11,11 @@ import {
   Checkbox,
   TextField,
   Button,
+  List,
+  ListItem,
+  IconButton,
+  ListItemText,
 } from "@mui/material";
-import InputBase from "@material-ui/core/InputBase";
-import SearchIcon from "@material-ui/icons/Search";
 import MinimizeIcon from "@mui/icons-material/Minimize";
 import AddIcon from "@mui/icons-material/Add";
 import "./search.scss";
@@ -33,15 +35,11 @@ import WalletAge from "./WalletAge";
 import WalletBalanceUSD from "./WalletBalanceUSD";
 import TransactionSize from "./TransactionSize";
 import TransactionDate from "./TransactionDate";
-import { CgAddR } from "react-icons/cg";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import FolderIcon from "@mui/icons-material/Folder";
-import DeleteIcon from "@mui/icons-material/Delete";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import IconButton from "@mui/material/IconButton";
-import ListItemText from "@mui/material/ListItemText";
+import { IndividualInfoForm } from "./IndividualInfoForm";
+import { TransactionInfoForm } from "./TransactionInfoForm";
+import { FinancialForm } from "./FinancialForm";
+import { TransInfoOptionalForm } from "./TransInfoOptionalForm";
+import { BusinessInfoForm } from "./BusinessInfoForm";
 
 function Search() {
   const [expanded, setExpanded] = React.useState(false);
@@ -49,39 +47,6 @@ function Search() {
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
-  const validationSchema = Yup.object().shape({
-    bCode: Yup.string().required("Branch code is required"),
-    username: Yup.string()
-      .required("Username is required")
-      .min(6, "Username must be at least 6 characters")
-      .max(20, "Username must not exceed 20 characters"),
-    email: Yup.string().required("Email is required").email("Email is invalid"),
-    password: Yup.string()
-      .required("Password is required")
-      .min(6, "Password must be at least 6 characters")
-      .max(40, "Password must not exceed 40 characters"),
-    confirmPassword: Yup.string()
-      .required("Confirm Password is required")
-      .oneOf([Yup.ref("password"), null], "Confirm Password does not match"),
-    acceptTerms: Yup.bool().oneOf([true], "Accept Terms is required"),
-  });
-
-  const formik = useFormik({
-    initialValues: {
-      bCode: "",
-      username: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-      acceptTerms: false,
-    },
-    validationSchema,
-    // validateOnChange: false,
-    // validateOnBlur: false,
-    onSubmit: (data) => {
-      console.log(JSON.stringify(data, null, 2));
-    },
-  });
 
   return (
     <div>
@@ -179,70 +144,9 @@ function Search() {
                 <GeoSelect />
               </Grid>
             </Grid>
-            <Grid container spacing={2}>
-              <Grid item xs={12} md={3}>
-                <List>
-                  <ListItem
-                    secondaryAction={
-                      <IconButton edge="end" aria-label="delete">
-                        <CgAddR />
-                      </IconButton>
-                    }
-                  >
-                    <ListItemText primary="Originating Location" />
-                  </ListItem>
-                </List>
 
-                <input
-                  id="standard-basic"
-                  type="text"
-                  label="Branch Location Code"
-                  name="bCode"
-                  onChange={formik.handleChange}
-                  value={formik.values.bCode}
-                />
-              </Grid>
-              <Grid item xs={12} md={3}>
-              <List>
-                  <ListItem
-                    secondaryAction={
-                      <IconButton edge="end" aria-label="delete">
-                        <CgAddR />
-                      </IconButton>
-                    }
-                  >
-                    <ListItemText primary="Financial Institution Wallet" />
-                  </ListItem>
-                </List>
-                <TextField
-                  id="standard-basic"
-                  label="Financial Institution Wallet Address"
-                  variant="standard"
-                  fullWidth
-                />
-              </Grid>
+            <FinancialForm />
 
-              <Grid item xs={12} md={3}>
-              <List>
-                  <ListItem
-                    secondaryAction={
-                      <IconButton edge="end" aria-label="delete">
-                        <CgAddR />
-                      </IconButton>
-                    }
-                  >
-                    <ListItemText primary="Originating Officer" />
-                  </ListItem>
-                </List>
-                
-                <TextField
-                  id="standard-basic"
-                  label="Financial Office Code"
-                  variant="standard"
-                  fullWidth
-                />
-              </Grid>
-            </Grid>
           </AccordionDetails>
         </Accordion>
       </div>
@@ -284,139 +188,11 @@ function Search() {
             </Grid>
 
             <h4 className="input-section-heading">Individual Information</h4>
-            <Grid container spacing={2}>
-              <Grid item xs={12} md={3}>
-                <TextField
-                  id="standard-basic"
-                  label="Financial Office Code"
-                  variant="standard"
-                  fullWidth
-                />
-                <input
-                  name="fullname"
-                  type="text"
-                  // className="form-control"
-                  onChange={formik.handleChange}
-                  value={formik.values.fullname}
-                />
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <TextField
-                  id="standard-basic"
-                  label="Financial Office Code"
-                  variant="standard"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <TextField
-                  id="standard-basic"
-                  label="Financial Office Code"
-                  variant="standard"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <TextField
-                  id="standard-basic"
-                  label="Financial Office Code"
-                  variant="standard"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <TextField
-                  id="standard-basic"
-                  label="Financial Office Code"
-                  variant="standard"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <TextField
-                  id="standard-basic"
-                  label="Financial Office Code"
-                  variant="standard"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <TextField
-                  id="standard-basic"
-                  label="Financial Office Code"
-                  variant="standard"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <TextField
-                  id="standard-basic"
-                  label="Financial Office Code"
-                  variant="standard"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <TextField
-                  id="standard-basic"
-                  label="Financial Office Code"
-                  variant="standard"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <TextField
-                  id="standard-basic"
-                  label="Financial Office Code"
-                  variant="standard"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <TextField
-                  id="standard-basic"
-                  label="Financial Office Code"
-                  variant="standard"
-                  fullWidth
-                />
-              </Grid>
-            </Grid>
+            <IndividualInfoForm />
 
             <h4 className="input-section-heading">Business Information</h4>
-            <Grid container spacing={2}>
-              <Grid item xs={12} md={3}>
-                <TextField
-                  id="standard-basic"
-                  label="Financial Office Code"
-                  variant="standard"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <TextField
-                  id="standard-basic"
-                  label="Financial Office Code"
-                  variant="standard"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <TextField
-                  id="standard-basic"
-                  label="Financial Office Code"
-                  variant="standard"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <TextField
-                  id="standard-basic"
-                  label="Financial Office Code"
-                  variant="standard"
-                  fullWidth
-                />
-              </Grid>
-            </Grid>
+            <BusinessInfoForm />
+            
           </AccordionDetails>
         </Accordion>
       </div>
@@ -457,154 +233,13 @@ function Search() {
               </Grid>
             </Grid>
 
-            <Grid container spacing={2}>
-              <Grid item xs={12} md={3}>
-                <TextField
-                  id="standard-basic"
-                  label="Financial Office Code"
-                  variant="standard"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <TextField
-                  id="standard-basic"
-                  label="Financial Office Code"
-                  variant="standard"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <TextField
-                  id="standard-basic"
-                  label="Financial Office Code"
-                  variant="standard"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <TextField
-                  id="standard-basic"
-                  label="Financial Office Code"
-                  variant="standard"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <TextField
-                  id="standard-basic"
-                  label="Financial Office Code"
-                  variant="standard"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <TextField
-                  id="standard-basic"
-                  label="Financial Office Code"
-                  variant="standard"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <TextField
-                  id="standard-basic"
-                  label="Financial Office Code"
-                  variant="standard"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <TextField
-                  id="standard-basic"
-                  label="Financial Office Code"
-                  variant="standard"
-                  fullWidth
-                />
-              </Grid>
-            </Grid>
+            <TransactionInfoForm />
 
             <h4 className="input-section-heading">
               Transaction Information (Optional)
             </h4>
-            <Grid container spacing={2}>
-              <Grid item xs={12} md={3}>
-                <List>
-                  <ListItem
-                    secondaryAction={
-                      <IconButton edge="end" aria-label="delete">
-                        <CgAddR />
-                      </IconButton>
-                    }
-                  >
-                    <ListItemText primary="International Swift Code" />
-                  </ListItem>
-                </List>
-                <TextField
-                  id="standard-basic"
-                  label="Financial Office Code"
-                  variant="standard"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <List>
-                  <ListItem
-                    secondaryAction={
-                      <IconButton edge="end" aria-label="delete">
-                        <CgAddR />
-                      </IconButton>
-                    }
-                  >
-                    <ListItemText primary="Domestic Routing Code" />
-                  </ListItem>
-                </List>
-                <TextField
-                  id="standard-basic"
-                  label="Financial Office Code"
-                  variant="standard"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <List>
-                  <ListItem
-                    secondaryAction={
-                      <IconButton edge="end" aria-label="delete">
-                        <CgAddR />
-                      </IconButton>
-                    }
-                  >
-                    <ListItemText primary="Bank Account Number" />
-                  </ListItem>
-                </List>
-                <TextField
-                  id="standard-basic"
-                  label="Financial Office Code"
-                  variant="standard"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12} md={3}>
-                <List>
-                  <ListItem
-                    secondaryAction={
-                      <IconButton edge="end" aria-label="delete">
-                        <CgAddR />
-                      </IconButton>
-                    }
-                  >
-                    <ListItemText primary="Settlement System" />
-                  </ListItem>
-                </List>
-                <TextField
-                  id="standard-basic"
-                  label="Financial Office Code"
-                  variant="standard"
-                  fullWidth
-                />
-              </Grid>
-            </Grid>
+            <TransInfoOptionalForm />
+
           </AccordionDetails>
         </Accordion>
       </div>

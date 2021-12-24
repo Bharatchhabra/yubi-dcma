@@ -14,16 +14,16 @@ import notif from "../../../assets/images/notif-nav-icon.png";
 import search from "../../../assets/images/search-nav-icon.png";
 import alert from "../../../assets/images/alerts-nav-icon.png";
 import reports from "../../../assets/images/reports-nav-icon.png";
-import Divider from '@mui/material/Divider';
+import Divider from "@mui/material/Divider";
 import "./header.scss";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   appbar: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   hd: {
     display: "flex",
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     textAlign: "left",
-    paddingLeft: "20px",
+    // paddingLeft: "20px",
     display: "flex",
   },
   tebs: {
@@ -46,7 +46,10 @@ const useStyles = makeStyles((theme) => ({
   header: {
     padding: "6px 0px",
   },
-  
+  mviewheader:{
+    textAlign: "right",
+  },
+
   mview: {
     ["@media (min-width:780px)"]: {
       display: "none",
@@ -79,84 +82,86 @@ export default function Header() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-   const handleTab =()=>{
-     setValue("2")
-    }
- 
- return (
+  const handleTab = () => {
+    setValue("2");
+  };
+
+  return (
     <div className={classes.root}>
-        <AppBar position="fixed" className={classes.appbar}>
-          <Container>
-          <Grid container
+      <AppBar position="fixed" className={classes.appbar}>
+        <Container>
+          <Grid
+            container
             direction="row"
             // justify = "space-between"
             alignItems="center"
             className={classes.header}
           >
-            <Grid item lg={3} className={classes.logo}>
+            <Grid item lg={3} xs={2} className={classes.logo}>
               <img src={logo} className="imgsize" />
             </Grid>
-            <Grid item lg={4} xs={8} className={classes.mmview}>
-              <div className={classes.menus}>
-                
-                  <Button className={classes.linkbtn}>
+            <Grid item lg={4} xs={10} className={classes.mmview}>
+              <div className={classes.mviewheader}>
+                <Button className={classes.linkbtn}>
                   <img src={reports} className={classes.btnimg} />
-                  </Button>
-              
-               
-                  <Button className={classes.linkbtn}>
-                    <img src={search} className={classes.btnimg} />
-                  </Button>
-                
+                </Button>
+
+                <Button className={classes.linkbtn}>
+                  <img src={search} className={classes.btnimg} />
+                </Button>
+                <Button>
+                  <img src={alert} className={classes.cnimg} /> &nbsp;{" "}
+                </Button>
+                <Button>
+                  <img src={notif} className={classes.cnimg} /> &nbsp;{" "}
+                </Button>
               </div>
             </Grid>
             <Grid item xs={8} className={classes.mview}>
               <div className={classes.btnimg}>
-                    <Button className={classes.menus}>
-                      <img src={search} className={classes.cnimg} /> &nbsp;{" "}
-                      <span>SEARCH</span>
-                    </Button>
-                    <Button className={classes.menus}>
-                      <img src={reports} className={classes.cnimg} /> &nbsp;{" "}
-                      <span>REPORTS</span>
-                    </Button>
-                    <Button className={classes.menus}>
-                      <img src={alert} className={classes.cnimg} /> &nbsp;{" "}
-                      <span>ALERTS</span>
-                    </Button>
-                    <Button className={classes.menus}>
-                      <img src={notif} className={classes.cnimg} /> &nbsp;{" "}
-                      <span>NOTIFICATIONS</span>
-                    </Button>
+                <Button className={classes.menus}>
+                  <img src={search} className={classes.cnimg} /> &nbsp;{" "}
+                  <span>SEARCH</span>
+                </Button>
+                <Button className={classes.menus}>
+                  <img src={reports} className={classes.cnimg} /> &nbsp;{" "}
+                  <span>REPORTS</span>
+                </Button>
+                <Button className={classes.menus}>
+                  <img src={alert} className={classes.cnimg} /> &nbsp;{" "}
+                  <span>ALERTS</span>
+                </Button>
+                <Button className={classes.menus}>
+                  <img src={notif} className={classes.cnimg} /> &nbsp;{" "}
+                  <span>NOTIFICATIONS</span>
+                </Button>
               </div>
             </Grid>
-            
 
             <Grid item lg={9} className={classes.dview}>
               <div className={classes.hd}>
                 <Button className={classes.menus}>
-                      <img src={search} className={classes.cnimg} /> &nbsp;{" "}
-                      <span>SEARCH</span>
-                    </Button>
+                  <img src={search} className={classes.cnimg} /> &nbsp;{" "}
+                  <span>SEARCH</span>
+                </Button>
                 <Button className={classes.menus}>
-                      <img src={reports} className={classes.cnimg} /> &nbsp;{" "}
-                      <span>REPORTS</span>
-                    </Button>
+                  <img src={reports} className={classes.cnimg} /> &nbsp;{" "}
+                  <span>REPORTS</span>
+                </Button>
                 <Button className={classes.menus}>
-                      <img src={alert} className={classes.cnimg} /> &nbsp;{" "}
-                      <span>ALERTS</span>
-                    </Button>
+                  <img src={alert} className={classes.cnimg} /> &nbsp;{" "}
+                  <span>ALERTS</span>
+                </Button>
                 <Button className={classes.menus}>
-                      <img src={notif} className={classes.cnimg} /> &nbsp;{" "}
-                      <span>NOTIFICATIONS</span>
-                    </Button>
+                  <img src={notif} className={classes.cnimg} /> &nbsp;{" "}
+                  <span>NOTIFICATIONS</span>
+                </Button>
               </div>
             </Grid>
           </Grid>
-          </Container>
-          <Divider />
-        </AppBar>
-       
+        </Container>
+        <Divider />
+      </AppBar>
     </div>
   );
 }

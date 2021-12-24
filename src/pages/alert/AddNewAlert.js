@@ -17,17 +17,19 @@ import {
 import LoadingButton from "@mui/lab/LoadingButton";
 import AddIcon from "@mui/icons-material/Add";
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import { FiEdit } from 'react-icons/fi'
+import { FiEdit } from 'react-icons/fi';
+import { makeStyles } from '@material-ui/core/styles';
+
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
 
 const rows = [
-  createData('11/12/2021', 'Daily Limit Money Xfer', 'D. Hubbard', 24, 4.0),
-  createData('12/08/2021', 'Weekly Limit Money Xfer', 'D. Hubbard', 37, 4.3),
-  createData('12/08/2021', 'Sending Money to Mixer', 'D. Hubbard', 24, 6.0),
-  createData('12/08/2021', 'Daily Limit Money Xfer', 'D. Hubbard', 67, 4.3),
+  createData('11/12/2021', 'Daily Limit Money Xfer', 'D. Hubbard', 'Active', 4.0),
+  createData('12/08/2021', 'Weekly Limit Money Xfer', 'D. Hubbard', 'Inactive', 4.3),
+  createData('12/08/2021', 'Sending Money to Mixer', 'D. Hubbard', 'Active', 6.0),
+  createData('12/08/2021', 'Daily Limit Money Xfer', 'D. Hubbard', 'Active', 4.3),
 ];
 
 export const AddNewAlert = () => {
@@ -75,7 +77,7 @@ export const AddNewAlert = () => {
                   </TableCell>
                   <TableCell className="border-0 alert-data">{row.calories}</TableCell>
                   <TableCell className="border-0 alert-data">{row.fat}</TableCell>
-                  <TableCell className="border-0 alert-data"><Button variant="contained" className="active-btn">Active</Button></TableCell>
+                  <TableCell className="border-0 alert-data"><Button variant="contained" className="active-btn" style={{color: "#75FFAC"}}>{row.carbs === "Lose" ? <span style={{color: '#FF75A7'}}>Inactive</span> : "Active"}</Button></TableCell>
                   <TableCell align="center" className="border-0 alert-data">
                   <IconButton aria-label="edit"><FiEdit className="editbtn"/></IconButton><IconButton aria-label="delete"> <HighlightOffIcon className="delete"/></IconButton></TableCell>
                 </TableRow>

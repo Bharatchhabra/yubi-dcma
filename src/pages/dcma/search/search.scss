@@ -15,3 +15,51 @@ input.larger {width: 20px;height: 20px;margin-bottom: 0;}
 .css-15v22id-MuiAccordionDetails-root {padding: 8px 35px 40px 40px !important;}
 .css-mhc70k-MuiGrid-root{padding: 15px 0;}
 .css-yw020d-MuiAccordionSummary-expandIconWrapper {color: #0096D9!important;}
+.input-feedback {
+   color: red;
+   margin-top: 0.25rem;
+ }
+ 
+ .error {
+   color: red;
+   display: none;
+ }
+ 
+ .success {
+   color: green;
+ }
+ 
+ .form-control {
+   margin-top: 1rem;
+ }
+ 
+ .valid input[type='email'],
+ .valid input[type='text'],
+ .valid input[type='number'] {
+   border-color: green;
+ }
+ .valid{
+   position: relative;
+ }
+ .valid .feedback {
+   color: #46A4B6;
+   position: absolute;
+   top: 50%;
+   right: 10%;
+ }
+ 
+ .invalid input[type='email'],
+ .invalid input[type='text'],
+ .invalid input[type='number'] {
+   border-color: red;
+ }
+ 
+ .invalid .feedback {
+   color: red;
+ }
+ 
+ @media only screen and (max-width: 600px) {
+   .accordion-heading {
+      font-size: 20px !important;
+   }
+ }
